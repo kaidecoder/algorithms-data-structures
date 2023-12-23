@@ -17,32 +17,32 @@
 **/
 
 //example:  Find the sum of the first n natural numbers
-function summation(n){
-    let sum = 0
-    for(let i=1; i<=n; i++){
-        sum += i
-    }
-    return sum
-}
+// function summation(n){
+//     let sum = 0
+//     for(let i=1; i<=n; i++){
+//         sum += i
+//     }
+//     return sum
+// }
 
 //We need to count the number of times a statement executes based on the size to find the time complexity.  The three statements with the word sum are the ones executed.  The for loop is just a repetition of the sum += 1 statement, which executes n times.  sum = 0 executes only once.  Return sum executes only once. So the total count is n + 2 times. So the time complexity is dependent on the input size.  Big O is expressed in terms of the input.  This is a linear equation.  We drop the constant. So O(n)=n - linear time complexity.
 
 //Time complexity can be approximated.  A loop in the calculation often results in a linear time complexity.
 
 //Same example as above, using a different formulation
-function summation(n){
-    return (n * (n + 1)) / 2
-}
+// function summation(n){
+//     return (n * (n + 1)) / 2
+// }
 
 //O(n) = O(1), constant time complexity BECAUSE, no matter what value is used for n, the return statement is executed only once.
 
 //example 
-for(let i=1; i<=n; i++){
-    for(let j=1; j<=i; j++){
+// for(let i=1; i<=n; i++){
+//     for(let j=1; j<=i; j++){
 
-    }
-}
-//Time Complexity is O(n^2) - Quadratic because of the two loops
+//     }
+// }
+//Time Complexity is O(n^2) - Quadratic because of the two loops, or for nested loops
 
 //Time Complexity for 3 loops is Cubic - O(n^3)
 
@@ -63,3 +63,94 @@ for(let i=1; i<=n; i++){
 
 //See the relationship amongst the various types of time and space complexity in the browser
 
+//POINTS TO NOTE
+/*
+Multiple algorithms exist for the same problem and there is no one right solution.  Different algorithms work well under different constraints.  Always understand the problem statement before determining which algorithm is better.
+
+The same algorithm with the same programming language can be implemented in different ways.
+
+Write code that is simple to read and maintain.
+
+/**
+ * ! Time Complexity of Objects
+**/
+//Objects
+/*
+Insert/Remove property - O(1)
+Access a value given a key - O(1)
+Search for a value in an object - O(n)
+Object.keys() - O(n)
+Object.values() - O(n)
+Object.entries() - O(n)
+*/
+
+//Arrays
+/**
+ * ! Time Complexity of Arrays
+**/
+/*
+Insert/remove from end of array - O(1)
+Insert/remove from beginning of array - O(n)
+Access a value - O(1)
+Searching - O(n)
+Push/pop - O(1)
+Shift, unshift, concat, slice, splice - O(n)
+forEach, map, filter, reduce - O(n)
+Higher ordered functions with a callback that contains a for loop has QUADRATIC time complexity
+
+*/
+
+/**
+ * ! Math Algorithms Time complexity - fibonacci sequence, Factorial of a number, Prime number, Power of two, Recursion, fibonacci sequence with recursion, Factorial of a number with recursion
+**/
+//1.  Fibonacci Sequence:  Given a number "n", find the first "n" elements of the Fibonacci sequence { 0, 1, 1, 2, 3, .....}
+//fibonacci(2) = [0,1]
+//fibonacci(3) = [0,1,1] etc.
+
+
+function fibonacci(n){
+    let fib = [0, 1]
+    for(let i=2; i<n; i++){
+        fib[i] = fib[i-1] + fib[i-2]
+    }
+    return fib
+}
+console.log(fibonacci(2))
+console.log(fibonacci(3))
+console.log(fibonacci(4))
+console.log(fibonacci(7))
+
+//Time complexity of Fibonacci is linear - O(n)
+
+//2.  Factorial of a number:  Give an integer "n", find the factorial of that integer.
+
+//my solution
+function factorial(n){
+    if(n < 0){
+        return
+    }else if(n === 0){
+        return 1
+    }else{
+        return n * factorial(n-1)
+    }
+}
+console.log(factorial(0))
+console.log(factorial(1))
+console.log(factorial(4))
+console.log(factorial(5))
+
+//Time complexity of Factorial varies - O(x^n) where x represents how many times the function calls itself
+
+//teacher's solution
+function factorials(n){
+    let result = 1
+    for(let i=2; i<=n; i++){
+        result *= i
+    }
+    return result
+}
+console.log(factorials(0))
+console.log(factorials(1))
+console.log(factorials(5))
+
+//Time complexity is linear - O(n)
