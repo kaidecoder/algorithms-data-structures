@@ -1,6 +1,6 @@
 ### An Introduction to the Fundamentals of Algorithms
 
-- What is an algorithm
+- What is an algorithm?
 - Measuring performance
 - Time & Space complexity
 - Big O notation
