@@ -293,3 +293,42 @@ function recursiveFac(n){
     return n * recursiveFactorial(n-1)
 }
 //Time complexity: O(n) because as n increases, the number of instructions executed increases at the same pace
+
+/**
+ * ! Search Algorithms - linear and binary search
+**/
+/**
+ * ! Linear Search
+**/
+//1.  Given an array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found.
+//my solution
+let c = "compartment".split("")
+function findIndex(arr, t){
+    if(arr.includes(t)){
+        return arr.indexOf(t)
+    }else{
+        return -1
+    }
+}
+console.log("The index:", findIndex(c, "t"))
+console.log("The index:", findIndex([-5, 2, 10, 4, 6], 10))
+
+//Time complexity: O(1)
+
+//teacher solution
+function linearSearch(arr, target){
+    for(let i=0; i<arr.length; i++){
+        if(arr[i] === target){
+            return i
+        }
+    }
+    return -1
+}
+console.log(linearSearch([-5, 2, 10, 4, 6], 10))
+
+//Time complexity: O(n) As the size of the array increases, the number of times the function executes increases
+
+/**
+ * ! Binary Search
+**/
+//2.  Given a sorted array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found.
