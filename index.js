@@ -208,6 +208,7 @@ function isPrime2(n){
 //Time complexity is O(sqrt(n)) Meaning what?
 
 //4.  Power of two:  Given a positive integer "n", determine if the number is a power of 2.
+//my solution
 function powerOfTwo(n){
     let counter = 0
     let pow = Math.log(n)/Math.log(2)
@@ -221,3 +222,74 @@ console.log(powerOfTwo(256))
 
 //Time complexity is O(1) - constant
 
+//teacher's solution
+function isPowerOfTwo(n){
+    if(n < 1){
+        return false
+    }
+    while(n>1){
+        if(n%2 !== 0){
+            return false
+        }else{
+            n = n/2
+        }
+        return true
+    }
+}
+console.log(isPowerOfTwo(4))
+
+//Time complexity:  O(n) NO!!!!!  We are reducing the input by half each time so the real time complexity is O(log n)
+
+function isPowerOfTwoBitWise(n){
+    if(n < 1){
+        return false
+    }else{
+        return (n & (n-1)) === 0 /* bitwise and MUST STUDY*/
+    }
+}
+//Time complexity is constant
+
+/**
+ * ! Recursion - A problem-solving technique where the solution depends on solutions to smaller instances of the same problem. 
+ * Every recursive solution needs a base case - to terminate the recursion 
+ * A recursive solution might be worse than an iterative solution
+**/
+//Recursive Fibonacci:  Given a number "n", find the nth element of the Fibonacci sequence(the number present at a certain position in the sequence)
+function fibonacciRecursive(n){
+    if(n < 2){
+        return n
+    }else{
+        return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
+    }
+}
+console.log(fibonacciRecursive(0))
+console.log(fibonacciRecursive(1))
+console.log(fibonacciRecursive(6))
+
+//Time complexity - O(2^n) Terrible performance, not a good solution
+
+//Recursive Factorial: Given an integer "n", find the factorial of that integer
+//my solution
+function recursiveFactorial(n){
+    if(n < 0){
+        return
+    }else if(n === 0){
+        return 1
+    }else{
+        return n * factorial(n-1)
+    }
+}
+console.log(recursiveFactorial(0))
+console.log(recursiveFactorial(5))
+console.log(recursiveFactorial(10))
+
+//Time complexity: O(2^n) WRONG?
+
+//Teacher's solution
+function recursiveFac(n){
+    if(n === 0){
+        return 1
+    }
+    return n * recursiveFactorial(n-1)
+}
+//Time complexity: O(n) because as n increases, the number of instructions executed increases at the same pace
