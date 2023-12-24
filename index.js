@@ -6,10 +6,8 @@
  * how to measure?  by input size.  Time complexity(time vs input size) & space complexity(memory vs input size)
  * how to represent time & space complexity?  asymptotic notations - (O-notation(worst case), omega-notation(best case), theta notation(average case))
  * what is Big-O Notation?  The worst case complexity of an algorithm describes the complexity of an algorithm using algebraic terms
- * Characteristics of Big-O Notation:  It is expressed in terms of the input; It focus on the bigger picture without getting caught up in the minute details-the largest power.
- * 
- * 
- *
+ * Characteristics of Big-O Notation:  It is expressed in terms of the input; It focuses on the bigger picture without getting caught up in the minute details-the largest power.
+
 **/
 
 /**
@@ -57,7 +55,7 @@
 
 //linear space complexity - extra space needed grows as the input size grows - O(n)
 
-//logarithmic space complexity - extra space needed grows, but not at the same rate as the input size - O(logn)
+//logarithmic space complexity - extra space needed grows, but not at the same rate as the input size - O(log n)
 
 //quadratic space complexity and factorial space complexity:  AVOID at all costs!!!!
 
@@ -207,3 +205,19 @@ function isPrime2(n){
     }
     return true
 }
+//Time complexity is O(sqrt(n)) Meaning what?
+
+//4.  Power of two:  Given a positive integer "n", determine if the number is a power of 2.
+function powerOfTwo(n){
+    let counter = 0
+    let pow = Math.log(n)/Math.log(2)
+    if(Number.isInteger(pow)){
+        return `${n} is a power of two.  The power is ${pow}`
+    }else{
+        return `Sorry, ${n} is not a power of two.`
+    }
+}
+console.log(powerOfTwo(256))
+
+//Time complexity is O(1) - constant
+
