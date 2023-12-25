@@ -329,6 +329,33 @@ console.log(linearSearch([-5, 2, 10, 4, 6], 10))
 //Time complexity: O(n) As the size of the array increases, the number of times the function executes increases
 
 /**
- * ! Binary Search
+ * ! Binary Search - pseudocode:  If the array is empty, return -1 as the element cannot be found; if the array has elements, find the middle element in the array.  If target is equal to the middle element, return the middle element index; If target is less than the middle element, binary search left half of the array.  If target is greater than middle element, binary search right half of the array.
 **/
-//2.  Given a sorted array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found.
+//2.  Given a sorted array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found. (Note: binary search only works on a sorted array)
+//my solution
+function binarySearch(arr, target){
+    for(let i=0; i<arr.length; i++){
+        if(arr.length === 0){
+            return -1
+        }else{
+            let mid = arr.length /2
+            if(mid === target){
+                return arr.indexOf(target)
+            }else if(target < mid){
+                for(let j=0; j<mid; j++){
+                    if(arr.includes(target)){
+                        return arr.indexOf(target)
+                    }
+                }
+            }else{
+                for(let k=arr.length; k>mid; k--){
+                    if(arr.includes(target)){
+                        return arr.indexOf(target)
+                    }
+                }
+            }
+        }
+    }
+}
+console.log(binarySearch([-5, 2, 4, 6, 10], 2))
+
