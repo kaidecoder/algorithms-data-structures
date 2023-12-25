@@ -266,7 +266,7 @@ console.log(fibonacciRecursive(0))
 console.log(fibonacciRecursive(1))
 console.log(fibonacciRecursive(6))
 
-//Time complexity - O(2^n) Terrible performance, not a good solution
+//Time complexity - O(2^n) Terrible performance, not a good solution  Why 2^n??
 
 //Recursive Factorial: Given an integer "n", find the factorial of that integer
 //my solution
@@ -561,3 +561,78 @@ function merge(leftArr, rightArr){
 arr = [100, 200, -2, 4, -6]
 console.log(mergeSort(arr))
 //Time complexity: O(n log n) One of the best time complexity from sorting!!
+
+/** 
+* ! Miscellaneous Problems
+**/
+/** 
+* ! Cartesian Product of two Sets - The Cross Product - Traverse each array and pair each element in the first array with each element in the second array
+**/
+//1.  Given two finite non-empty sets, find their Cartesian Product
+function crossProduct(arr1, arr2){
+    const result = []
+    for (let i=0; i<arr1.length; i++){
+        for(let j=0; j<arr2.length; j++){
+            result.push([arr1[i], arr2[j]])
+        }
+    }
+    return result
+}
+let arr1 = [1,2]
+let arr2 = [3, 4, 5]
+console.log(crossProduct(arr1, arr2))
+
+//Time complexity: O(mn) dependent on the length of both array1 and array2
+
+/** 
+* ! Climbing Staircase problem:  To climb to step "n", we can only climb from step "n-1" or "n-2" - meaning to get to n we can be one step below n, or two steps below n.  So calculate the ways we can climb to "n-1" and "n-2" steps and add the two.  climbingStaircase(n) = climbingStaircase(n-1) + climbingStaircase(n-2) which resembles the Fibonacci sequence. The pattern:
+n=1, climbingStaircase(1) = 1 (1)
+n=2, climbingStaircase(2) = 2 (1,1) and (2)
+n=3, climbingStaircase(3) = 3 (1,1,1), (1,2) and (2,1)
+n=4, climbingStaircase(4) = 5 (1,1,1,1), (1,1,2), (1,2,1), (2,1,1) AND (2,2).  NOTICE:  1, 2, 3, 5, ..... The current is the sum of the previous 2
+**/
+//2.  Given a staircase of "n" steps, count the number of distinct ways to climb to the top.  You can either climb 1 step or 2 steps at a time.
+//my solution
+function staircaseProblem(n){
+    if(n <= 3){
+        return n
+    }else{
+        return staircaseProblem(n-1) + staircaseProblem(n-2)
+    }
+}
+console.log(staircaseProblem(8))
+//Time complexity: O(2^n)?? Why? It recalculates the values multiple times
+
+//teacher solution
+function climbStaircase(n){
+    const numOfWays = [1,2]
+    for(let i=2; i<=n; i++){
+        numOfWays[i] = numOfWays[i-1] + numOfWays[i-2]
+    }
+    return numOfWays[n-1]
+}
+console.log(climbStaircase(1))
+console.log(climbStaircase(2))
+console.log(climbStaircase(3))
+console.log(climbStaircase(4))
+console.log(climbStaircase(5))
+console.log(climbStaircase(8))
+
+//Time complexity: O(n)
+
+/**
+* ! Tower of Hanoi - rules: only one disk may be moved at a time.  Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an impty rod.  No disk may be placed on top of a disk that is smaller.
+**/
+function towerOfHanoi(n, fromRod, toRod, usingRod){
+    if(n===1){
+        console.log(`Move disk 1 from ${fromRod} to ${toRod}`)
+        return
+    }else{
+        towerOfHanoi(n-1, fromRod, usingRod, toRod)
+        console.log(`Move disk ${n} from ${fromRod} to ${toRod}`)
+        towerOfHanoi(n-1, usingRod, toRod, fromRod)
+    }
+}
+console.log(towerOfHanoi(3, "A", "C", "B"))
+
+//Time complexity: O(2^n)
