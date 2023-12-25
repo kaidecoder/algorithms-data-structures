@@ -332,7 +332,7 @@ console.log(linearSearch([-5, 2, 10, 4, 6], 10))
  * ! Binary Search - pseudocode:  If the array is empty, return -1 as the element cannot be found; if the array has elements, find the middle element in the array.  If target is equal to the middle element, return the middle element index; If target is less than the middle element, binary search left half of the array.  If target is greater than middle element, binary search right half of the array.
 **/
 //2.  Given a sorted array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found. (Note: binary search only works on a sorted array)
-//my solution 
+//my solution REDO THIS WRONG CODE! INEFFICIENT!!!  we need a left and right endpoint to determine the middle point.  Then we can reassign the left and right endpoints to work with either end of the data
 function binarySearch(arr, target){
     for(let i=0; i<arr.length; i++){
         if(arr.length === 0){
@@ -341,7 +341,8 @@ function binarySearch(arr, target){
             let mid = Math.floor(arr.length /2)
             if(mid === target){
                 return arr.indexOf(target)
-            }else if(target < mid){
+                //target < arr[mid]
+            }else if(target < arr[mid]){
                 for(let j=0; j<mid; j++){
                     if(arr.includes(target)){
                         return arr.indexOf(target)
@@ -362,7 +363,7 @@ console.log(binarySearch([-5, 2, 4, 6, 10], 10))
 console.log(binarySearch([-5, 2, 4, 6, 10], 6))
 console.log(binarySearch([-5, 2, 4, 6, 10], 20))
 
-//Time complexity: O(n^3) ???
+//Time complexity: O(n^3)??
 
 //Teacher's solution
 function binarySearch2(arr, target){
@@ -387,3 +388,9 @@ function binarySearch2(arr, target){
 console.log(binarySearch2([-5, 2, 4, 6, 10], 10))
 console.log(binarySearch2([-5, 2, 4, 6, 10], 6))
 console.log(binarySearch2([-5, 2, 4, 6, 10], 20))
+
+//Time complexity: O(log n) reduce input size by 1/2 for every iteration
+
+/**
+ * ! Recursive Binary Search
+**/
