@@ -44,7 +44,7 @@
 
 //Time Complexity for 3 loops is Cubic - O(n^3)
 
-//If the input size reduces by 1/2 each iteration then Time Complexity is Logarithmic - O(logn)
+//If the input size reduces by 1/2 each iteration then Time Complexity is Logarithmic - O(log n)
 
 /**
  * ! Space complexity
@@ -363,7 +363,7 @@ console.log(binarySearch([-5, 2, 4, 6, 10], 10))
 console.log(binarySearch([-5, 2, 4, 6, 10], 6))
 console.log(binarySearch([-5, 2, 4, 6, 10], 20))
 
-//Time complexity: O(n^3)??
+//Time complexity: O(n^3)?? O(n^2) cuz nested loops
 
 //Teacher's solution
 function binarySearch2(arr, target){
@@ -393,4 +393,113 @@ console.log(binarySearch2([-5, 2, 4, 6, 10], 20))
 
 /**
  * ! Recursive Binary Search
+**/
+//3.  Given a sorted array of "n" elements and a target element "t", find the index of "t" in the array.  Return -1 if the target element is not found.
+function recursiveBinarySearch2(arr, target){
+    return search(arr, target, 0, arr.length-1)
+}
+
+function search(arr, target, leftIndex, rightIndex){
+    if(leftIndex > rightIndex){
+        return -1
+    }
+    let middleIndex = Math.floor((leftIndex + rightIndex) / 2)
+    if(target === arr[middleIndex]){
+        return middleIndex
+    }else{
+        if(target < arr[middleIndex]){
+            return search(arr, target, leftIndex, middleIndex - 1)
+        }else{
+            return search(arr, target, middleIndex + 1, rightIndex )
+        }
+    }
+}
+console.log(recursiveBinarySearch2([-5, 2, 4, 6, 10], 10))
+console.log(recursiveBinarySearch2([-5, 2, 4, 6, 10], 6))
+console.log(recursiveBinarySearch2([-5, 2, 4, 6, 10], 20))
+
+//Time complexity: O(log n) search() called twice, but input reduced by 1/2
+
+/**
+ * ! Sorting algorithms - Bubble sort, Insertion sort, Quick sort, Merge sort.  
+**/
+/**
+ * ! Sorting algorithms - Bubble sort: compare adjacent elements in the array and swap the positions if they are not in the intended order, then repeat the comparison.  Check if elements were swapped.
+**/
+//1.  Given an array of integers, sort the array using Bubble Sort
+let arr = [-6, 20, 8, -2, 4, -18, 0]
+function bubbleSort(arr){
+    let swapped
+    do {
+        swapped = false
+        for(let i=0; i<arr.length-1; i++){
+            if(arr[i] > arr[i+1]){
+                //use transitive property a=b b=c c=a
+                let temp = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = temp
+                swapped = true
+            }
+        }
+    }while(swapped) 
+}
+(bubbleSort(arr)) /* separate cuz array sorts in place */
+console.log(arr)
+
+//Time complexity:  O(n^2) nested loops As the number of elements in the array increases, the number of comparisons increases by square of the number - not great for sorting
+
+/**
+ * ! Insertion sort - split the array into sorted and unsorted parts.  Assume that the first element is already sorted and the remaining elements are unsorted.  Select an unsorted element and compare with all elements in the sorted part.  If the elements in the sorted part is smaller than the selected element, proceed to the next element in the unsorted part. Else, shift larger elements in the sorted part towards the right.  Insert the selected element at the right index.  Repeat steps until all the unsorted elements are placed in the right order.
+**/
+//2.  Given an array of integers, sort the array
+//my solution - NOPE!!  This is just bubble sort
+function insertionSort(arr){
+    let swapped
+    for(let i=0; i<arr.length; i++){
+        let NTI = arr[i+1], SE = arr[i] //Number to insert, sorted element
+        //perform comparison until you reach the beginning
+        swapped = false
+        while(!swapped){
+            if(SE > NTI){
+                let temp = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = temp
+            }
+            swapped = true
+        }
+    }
+}
+(insertionSort(arr)) /* separate cuz array sorts in place */
+console.log(arr)
+
+//teacher's solution
+function insertionSort(arr){
+    //assume i=0 is sorted already
+    //For loop iterates through the unsorted part
+    for(let i=1; i<arr.length; i++){
+        let numberToInsert = arr[i]
+        //arr[i] has to be compared to each element in the sorted part
+        //i is the index of the number to insert
+        let j = i - 1 //j is the first element in the sorted part heading left
+        //the while loop iterates over the sorted part
+        //So while there are numbers to the left of i that are larger than the number at i
+        //Compare the sorted elements with numberToInsert to find the index where the insertion has to happen.  The index is where the sorted element is less than the number to insert.
+        while(j >= 0 && arr[j] > numberToInsert){
+            //means arr[i] = arr[j] so you swapped the sorted with the unsorted position
+            arr[j+1] = arr[j]
+            //then move one step to the left and start again
+            j = j-1 
+        }
+        //Then insert the number to the right of that index
+        arr[j+1] = numberToInsert
+    }
+}
+arr = [5, 25, 0, -3]
+insertionSort(arr)
+console.log(arr)
+
+//Time complexity: O(n^2)
+
+/**
+ * ! Quick Sort - 
 **/
