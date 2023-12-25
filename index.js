@@ -501,5 +501,63 @@ console.log(arr)
 //Time complexity: O(n^2)
 
 /**
- * ! Quick Sort - 
+ * ! Quick Sort - Identify the pivot element(pick first/last/median/random element as pivot), put everything that's smaller than the pivot into a "left" array, and everything that's greater than the pevot into a "right" array.  Repeat the process for the individual "left" and "right" arrays until you have an array of length 1 (base condition) which is sorted by definition.  Repeatedly concatenate the left array, pivot and right array until one sorted array remains.
 **/
+//3.  Given an array of integers, sort the array
+function quickSort(arr){
+    //base case
+    if(arr.length < 2){
+        return arr
+    }
+    let pivot = arr[arr.length-1] //last digit
+    let left = []
+    let right = []
+    //loop through the array, if current value is smaller than the pivot, push left, else push right
+    for(let i=0; i<arr.length-1; i++){
+        if(arr[i] < pivot){
+            left.push(arr[i])
+        }else{
+            right.push(arr[i])
+        }
+    }
+    return [...quickSort(left), pivot, ...quickSort(right)]
+}
+arr = [8, 20, -2, 4, -25]
+let sortedArr = quickSort(arr)
+console.log(sortedArr)
+
+//Time complexity: O(n^2) is the worst case - when the array is sorted because we're comparing with two arrays with every element; O(n log n) is the average case because we divide the array recursively into smaller arrays which is log n and the forloop gives O(n) - so combining O(n) and O(log n) give O(n log n).  Use this solution if there are no space contrainsts.  If there are space constraints, use merge sort algorithm.
+
+//TODO:
+function reverseSortedArrayWithQuicksort(arr){
+
+}
+
+/**
+ * ! Merge Sort - Divide the array into sub arrays, each containing only one element.  Repeatedly merge the sub arrays to produce new sorted sub arrays until there is only one sub array remaining.  That will be the sorted array.
+**/
+//4.  Given an array of integers, sort the array
+function mergeSort(arr){
+    if(arr.length < 2){
+        return arr
+    }
+    const mid = Math.floor(arr.length/2)
+    const leftArr = arr.slice(0,mid)
+    const rightArr = arr.slice(mid)
+   return merge(mergeSort(leftArr), mergeSort(rightArr))
+}
+
+function merge(leftArr, rightArr){
+    const sortedArr = []
+    while(leftArr.length && rightArr.length){
+        if(leftArr[0] <= rightArr[0]){
+            sortedArr.push(leftArr.shift())
+        }else{
+            sortedArr.push(rightArr.shift())
+        }
+    }
+    return [...sortedArr, ...leftArr, ...rightArr]
+}
+arr = [100, 200, -2, 4, -6]
+console.log(mergeSort(arr))
+//Time complexity: O(n log n) One of the best time complexity from sorting!!
