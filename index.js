@@ -636,3 +636,23 @@ function towerOfHanoi(n, fromRod, toRod, usingRod){
 console.log(towerOfHanoi(3, "A", "C", "B"))
 
 //Time complexity: O(2^n)
+
+/**
+ * ! Algorithm Design Techniques
+ * Brute force:  simple and exhaustive technique that evaluates every possible outcome to find the best solution eg. linear search algorithm
+ * Greedy approach:  Choose the best option at the current time, without any consideration for the future.  eg.  Dijkstra's algorithm, Prim's algorithm, and Kruskal's algorithm.
+ * Divide and Conquor:  Divide the problem into smaller sub-problems.  Each sub-problem is then solved and the partial solutions are recombined to determine the overall solution.  eg. Binary Search, Quick Sort, Merge Sort, and Tower of Hanoi
+ * Dynamic Programming:  Divide the problem into smaller sub-problems.  Break it down into smaller but overlapping sub-problems.  Store the result and reuse it for the same sub-problems.  This is called memoization and is an optimization technique that improves the time complexity of your algorithm.  eg.  Fibonacci numbers and climbing staircase.
+ * Backtracking: Generate all possible solutions.  Check if the solution satisfies all the given constraints and only then you proceed with generating subsequent solutions.  If the constraints are not satisfied, backtrack and go on a different path to find the solution.  eg. N-Queens problem
+ * 
+ * 
+**/
+
+/**
+ * ! Problem Types to work on:
+ * Find the GCD using Euclidian algorithm
+ * Find permutations & combinations of a list of numbers
+ * Find the longest common substring in a string
+ * Knapsack problem
+ * 
+**/
